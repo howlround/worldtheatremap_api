@@ -26,3 +26,9 @@ This project uses [Feathers](http://feathersjs.com).
 
 - docker-compose up -d
 - Hopefully once it's running you can ``docker exec -i wtmapi_web_1 zsh``
+
+## License
+
+Copyright (c) 2017 ArtsEmerson
+
+Licensed under the [MIT license](LICENSE).
