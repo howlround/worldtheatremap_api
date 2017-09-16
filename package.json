@@ -1,0 +1,16 @@
+{
+  "name": "wtm_api",
+  "description": "World Theatre Map API",
+  "version": "0.1.0",
+  "homepage": "http://www.worldtheatremap.org",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/howlround/worldtheatremap_api"
+  },
+  "scripts": {
+    "test": "npm run eslint && npm run mocha",
+    "eslint": "eslint src/. test/. --config .eslintrc.json",
+    "start": "node",
+    "mocha": "mocha test/ --recursive"
+  }
+}
