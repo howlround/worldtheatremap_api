@@ -32,6 +32,9 @@ RUN buildDeps='xz-utils curl ca-certificates' \
     && rm "node-v$NODE_VERSION-linux-x64.tar.xz" SHASUMS256.txt.asc SHASUMS256.txt \
     && apt-get purge -y --auto-remove $buildDeps
 
+# Install yarn and feathers-cli
+RUN npm install -g yarn feathers-cli
+
 # Install Git
 RUN add-apt-repository -y ppa:git-core/ppa;\
   apt-get update;\
