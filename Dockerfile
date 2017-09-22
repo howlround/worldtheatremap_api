@@ -19,7 +19,7 @@ RUN set -ex \
 
 ENV NPM_CONFIG_LOGLEVEL info
 ENV NODE_VERSION 8.5.0
-ENV NODE_ENV wtm-dev
+ENV NODE_ENV dev
 
 RUN buildDeps='xz-utils curl ca-certificates' \
     && set -x \
