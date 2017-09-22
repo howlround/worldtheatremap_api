@@ -1,7 +1,7 @@
-// Initializes the `users` service on path `/users`
+// Initializes the `ApiKeys` service on path `/api-keys`
 const createService = require('feathers-mongodb');
-const hooks = require('./users.hooks');
-const filters = require('./users.filters');
+const hooks = require('./api-keys.hooks');
+const filters = require('./api-keys.filters');
 
 module.exports = function () {
   const app = this;
@@ -10,13 +10,13 @@ module.exports = function () {
   const options = { paginate };
 
   // Initialize our service with any options it requires
-  app.use('/users', createService(options));
+  app.use('/api-keys', createService(options));
 
   // Get our initialized service so that we can register hooks and filters
-  const service = app.service('users');
+  const service = app.service('api-keys');
 
   mongoClient.then(db => {
-    service.Model = db.collection('users');
+    service.Model = db.collection('ApiKeys');
   });
 
   service.hooks(hooks);

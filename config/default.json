@@ -12,12 +12,12 @@
       "local"
     ],
     "path": "/authentication",
-    "service": "users",
+    "service": "api-keys",
     "jwt": {
       "header": {
         "type": "access"
       },
-      "audience": "https://yourdomain.com",
+      "audience": "https://data.worldtheatremap.org",
       "subject": "anonymous",
       "issuer": "feathers",
       "algorithm": "HS256",
@@ -25,9 +25,8 @@
     },
     "local": {
       "entity": "user",
-      "usernameField": "email",
-      "passwordField": "password"
+      "usernameField": "public",
+      "passwordField": "secret"
     }
-  },
-  "mongodb": "mongodb://localhost:3001/meteor"
+  }
 }

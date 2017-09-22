@@ -115,3 +115,6 @@ data/
 config/
 ~config/default.json
 ~config/production.json
+
+# Protected backups
+protected_db

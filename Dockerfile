@@ -19,6 +19,7 @@ RUN set -ex \
 
 ENV NPM_CONFIG_LOGLEVEL info
 ENV NODE_VERSION 8.5.0
+ENV NODE_ENV wtm-dev
 
 RUN buildDeps='xz-utils curl ca-certificates' \
     && set -x \
@@ -67,7 +68,8 @@ WORKDIR /usr/src/app
 RUN cd /usr/src/app
 
 # Install app dependencies
-RUN npm install
+RUN yarn install
 
 EXPOSE 3030
 CMD [ "npm", "start" ]
+# CMD [ "node" ]
