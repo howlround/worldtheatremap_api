@@ -71,5 +71,5 @@ RUN cd /usr/src/app
 RUN yarn install
 
 EXPOSE 3030
-CMD [ "npm", "start" ]
-# CMD [ "node" ]
+# CMD [ "npm", "start" ]
+CMD [ "node" ]
