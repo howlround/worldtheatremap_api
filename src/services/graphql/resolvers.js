@@ -16,9 +16,56 @@ module.exports = function Resolvers() {
           query.nameSearch = new RegExp(`.*${removeDiacritics(args.input.name).toUpperCase()}.*`);
         }
 
+        if (!isNil(args.input.country)) {
+          query.country = args.input.country;
+        }
+
+        if (!isNil(args.input.selfDefinedRoles)) {
+          query.selfDefinedRoles = {
+            $in: args.input.selfDefinedRoles,
+          }
+        }
+
+        if (!isNil(args.input.interests)) {
+          query.interests = {
+            $in: args.input.interests,
+          }
+        }
+
+        if (!isNil(args.input.orgTypes)) {
+          query.orgTypes = {
+            $in: args.input.orgTypes,
+          }
+        }
+
+        if (!isNil(args.input.ethnicityRace)) {
+          query.ethnicityRace = {
+            $in: args.input.ethnicityRace,
+          }
+        }
+
+        if (!isNil(args.input.locality)) {
+          query.locality = args.input.locality;
+        }
+
+        if (!isNil(args.input.administrativeArea)) {
+          query.administrativeArea = args.input.administrativeArea;
+        }
+
+        if (!isNil(args.input.postalCode)) {
+          query.postalCode = args.input.postalCode;
+        }
+
+        if (!isNil(args.input.gender)) {
+          query.gender = args.input.gender;
+        }
+
         // If this function hasn't generated a valid query return early to prevent all results being returned
         if (isEmpty(query)) {
-          return null;
+          return {
+            total: 0,
+            profiles: null,
+          }
         }
 
         // context is neccessary for auth

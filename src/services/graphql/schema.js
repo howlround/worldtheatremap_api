@@ -40,6 +40,7 @@ const typeDefs = `
 
   # Inputs
   input ProfileFiltersInput {
+    # Searching on the name field is not case sensitive, matches partial words, and uses case folding for diacritics.
     name: String
     selfDefinedRoles: [String]
     interests: [String]
