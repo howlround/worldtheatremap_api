@@ -22,6 +22,12 @@ This project uses [Feathers](http://feathersjs.com).
 - `docker start -i wtmapi_web_1`
 - Then use `docker exec -it wtmapi_web_1 zsh` to ssh in
 
+### Using a database in development
+
+Our live site uses Compose.io for the mongo db. Compose uses Snapshots instead of exports which can directly be used in our container. https://www.compose.com/articles/compose-backups-going-local
+
+Our docker-compose.yml file has a settings in the mongo container for volumes. Mapping a directory to `/data/db` will allow the mongo instance in the container to read from the snapshot directly. In our case we put the snapshot in protected_db/howlround-mongodb which is excluded from git.
+
 ## After creating a functional feathers app
 
 - docker-compose up -d
