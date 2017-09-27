@@ -30,9 +30,31 @@ const typeDefs = `
     postalCode: String
   }
 
+  type Show {
+    _id: String
+    name: String
+    author: [Author]
+    about: String
+    interests: [String]
+    country: [String]
+    languages: [String]
+  }
+
+  type Author {
+    name: String
+    _id: String
+  }
+
   # Responses
   type FindProfilesResponse {
     profiles: [Profile]
+    total: Int
+    skip: Int
+    limit: Int
+  }
+
+  type FindShowsResponse {
+    shows: [Show]
     total: Int
     skip: Int
     limit: Int
@@ -45,18 +67,35 @@ const typeDefs = `
     selfDefinedRoles: [String]
     interests: [String]
     orgTypes: [String]
-    locality: String
-    administrativeArea: String
-    country: String
-    postalCode: String
-    gender: String
+    locality: [String]
+    administrativeArea: [String]
+    country: [String]
+    postalCode: [String]
+    gender: [String]
     ethnicityRace: [String]
+  }
+
+  input ShowFiltersInput {
+    # Searching on the name field is not case sensitive, matches partial words, and uses case folding for diacritics.
+    name: String
+    author: AuthorInput
+    interests: [String]
+    country: [String]
+    languages: [String]
+  }
+
+  input AuthorInput {
+    # For filtering shows only the author _id is accepted
+    #   - Only one author can be queried at a time
+    _id: String
   }
 
   # The schema allows the following queries:
   type Query {
-    # Find profiles
+    # Find Profiles
     findProfiles(input: ProfileFiltersInput) : FindProfilesResponse
+    # Find Shows
+    findShows(input: ShowFiltersInput) : FindShowsResponse
   }
 `;
 
