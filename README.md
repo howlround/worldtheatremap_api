@@ -4,6 +4,11 @@
 
 This project uses [Feathers](http://feathersjs.com).
 
+## API documentation
+
+- Main graphiql browser and documentation is located at /graphiql
+- For testing with JWT authorization use https://github.com/vitalcode/auth-graphiql and run on docker locally
+
 ## Starting app
 
 - pm2 start ecosystem.json --env production
