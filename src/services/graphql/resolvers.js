@@ -97,7 +97,6 @@ module.exports = function Resolvers() {
       findShows: (root, args, context) => {
         const query = {};
 
-
         if (!isNil(args.input.name)) {
           query.nameSearch = new RegExp(`.*${removeDiacritics(args.input.name).toUpperCase()}.*`);
         }

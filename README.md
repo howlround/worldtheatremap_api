@@ -65,7 +65,7 @@ Our docker-compose.yml file has a settings in the mongo container for volumes. M
     gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$key"; \
   done
 ```
-- `NODE_VERSION=8.5.0` match version in Dockerfile line 21
+- `NODE_VERSION=8.6.0` match version in Dockerfile line 21
 - Run:
 ```
   buildDeps='xz-utils curl ca-certificates' \
@@ -110,8 +110,8 @@ Our docker-compose.yml file has a settings in the mongo container for volumes. M
 - Update server code: `sudo apt-get update; sudo apt-get upgrade`
 - `cd /var/www/npx_search`
 - Pull new code (or branch)
-- `npm install`
-- create config/production.json with mongo credentials
+- `yarn install`
+- create config/production.json with mongo credentials (if using a snapshot this will be there already)
 - `pm2 start ecosystem.json --env production`
 - Update DNS to point to new droplet for given url: https://gaiahost.coop/myaccount/dns/zone/show/1609#A
 - Confirm site is pointing at correct droplet
