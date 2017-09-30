@@ -29,3 +29,7 @@ services:
       - ./protected_db/howlround-mongodb:/data/db
     # ports:
     #   - "27017:27017"
+  graphiql:
+    image: vitalcode/auth-graphiql
+    ports:
+      - "3003:3000"
