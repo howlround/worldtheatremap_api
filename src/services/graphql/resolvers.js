@@ -72,6 +72,20 @@ module.exports = function Resolvers() {
           }
         }
 
+        // endsAfter: String
+        if (!isNil(args.input.endsAfter)) {
+          query.endDate = {
+            $gte: moment(args.input.endsAfter).startOf('day').toDate(),
+          };
+        }
+
+        // startsBefore: String
+        if (!isNil(args.input.startsBefore)) {
+          query.startDate = {
+            $lte: moment(args.input.startsBefore).endOf('day').toDate(),
+          };
+        }
+
         // If this function hasn't generated a valid query return early to prevent all results being returned
         if (isEmpty(query)) {
           return {

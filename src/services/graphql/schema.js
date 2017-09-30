@@ -2,7 +2,7 @@ const typeDefs = `
   type Profile {
     _id: String
     profileType: [String]
-    name: String!
+    name: String
     gender: [String]
     genderOther: [String]
     ethnicityRace: [String]
@@ -114,6 +114,14 @@ const typeDefs = `
     postalCode: [String]
     gender: [String]
     ethnicityRace: [String]
+    # - Date fields on Profiles are optional and only applicable for profileType "Festival"
+    # - Date fields use javascript Date format
+    # - Passing a date to startsBefore searches for events that start before the date passed
+    startsBefore: String
+    # - Date fields on Profiles are optional and only applicable for profileType "Festival"
+    # - Date fields use javascript Date format
+    # - Passing a date to endsAfter searches for events that end after the date passed
+    endsAfter: String
   }
 
   input ShowFiltersInput {
