@@ -3,6 +3,7 @@ const each = require('lodash').each;
 const get = require('lodash').get;
 const isEmpty = require('lodash').isEmpty;
 const isNil = require('lodash').isNil;
+const moment = require('moment');
 const removeDiacritics = require('diacritics').remove;
 
 module.exports = function Resolvers() {
@@ -145,6 +146,84 @@ module.exports = function Resolvers() {
           .then(data => ({
             total: data.total,
             shows: data.data,
+            skip: data.skip,
+            limit: data.limit,
+          }));
+
+        return find;
+      },
+
+      findEvents: (root, args, context) => {
+        const query = {};
+
+        // _id: String
+        if (!isNil(args.input._id)) {
+          query._id = args.input._id;
+        }
+
+        // eventType: [String]
+        if (!isNil(args.input.eventType)) {
+          query.eventType = {
+            $in: args.input.eventType,
+          }
+        }
+
+        // locality: [String]
+        if (!isNil(args.input.locality)) {
+          query.locality = {
+            $in: args.input.locality,
+          }
+        }
+
+        // administrativeArea: [String]
+        if (!isNil(args.input.administrativeArea)) {
+          query.administrativeArea = {
+            $in: args.input.administrativeArea,
+          }
+        }
+
+        // country: [String]
+        if (!isNil(args.input.country)) {
+          query.country = {
+            $in: args.input.country,
+          }
+        }
+
+        // startDate: String
+        if (!isNil(args.input.startDate)) {
+          query.endDate = {
+            $gte: moment(args.input.startDate).startOf('day').toDate(),
+          };
+        }
+
+        // endDate: String
+        if (!isNil(args.input.endDate)) {
+          query.startDate = {
+            $lte: moment(args.input.endDate).endOf('day').toDate(),
+          };
+        }
+
+        // If this function hasn't generated a valid query return early to prevent all results being returned
+        if (isEmpty(query)) {
+          return {
+            total: 0,
+            events: null,
+          }
+        }
+
+        // context is neccessary for auth
+        const params = context;
+        // Add query and skip
+        params.query = query;
+        if (!isNil(args.input.skip)) {
+          params.query.$skip = args.input.skip;
+        }
+
+        const find = app.service('events')
+          .find(params)
+          .then(data => ({
+            total: data.total,
+            events: data.data,
             skip: data.skip,
             limit: data.limit,
           }));
