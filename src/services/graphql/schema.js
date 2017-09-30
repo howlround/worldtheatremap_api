@@ -142,6 +142,8 @@ const typeDefs = `
 
   input EventFiltersInput {
     _id: String
+    show: ReferencedEntityInput
+    organizations: ReferencedEntityInput
     eventType: [String]
     locality: [String]
     administrativeArea: [String]

@@ -185,6 +185,18 @@ module.exports = function Resolvers() {
           query._id = args.input._id;
         }
 
+        // show: ReferencedEntityInput
+        const showId = get(args.input, 'show._id');
+        if (showId) {
+          query['show._id'] = showId;
+        }
+
+        // organizations: ReferencedEntityInput
+        const organizationsId = get(args.input, 'organizations._id');
+        if (organizationsId) {
+          query['organizations._id'] = organizationsId;
+        }
+
         // eventType: [String]
         if (!isNil(args.input.eventType)) {
           query.eventType = {
