@@ -61,6 +61,12 @@ const typeDefs = `
     postalCode: String
   }
 
+  type Participant {
+    profile: ReferencedEntity
+    role: String
+    event: Event
+  }
+
   # Helpers
   type ReferencedEntity {
     name: String
@@ -95,6 +101,13 @@ const typeDefs = `
 
   type FindEventsResponse {
     events: [Event]
+    total: Int
+    skip: Int
+    limit: Int
+  }
+
+  type FindParticipantsResponse {
+    participants: [Participant]
     total: Int
     skip: Int
     limit: Int
@@ -135,8 +148,7 @@ const typeDefs = `
   }
 
   input ReferencedEntityInput {
-    # For filtering shows only the author _id is accepted
-    #   - Only one author can be queried at a time
+    # For filtering referenced entities only the _id is accepted
     _id: String
   }
 
@@ -156,14 +168,25 @@ const typeDefs = `
     endsAfter: String
   }
 
+  input ParticipantFiltersInput {
+    _id: String
+    profile: ReferencedEntityInput
+    role: String
+    event: ParticipantEventFiltersInput
+  }
+
+  input ParticipantEventFiltersInput {
+    _id: String
+    show: ReferencedEntityInput
+    organizations: ReferencedEntityInput
+  }
+
   # The schema allows the following queries:
   type Query {
-    # Find Profiles
     findProfiles(input: ProfileFiltersInput) : FindProfilesResponse
-    # Find Shows
     findShows(input: ShowFiltersInput) : FindShowsResponse
-    # Find Events
     findEvents(input: EventFiltersInput) : FindEventsResponse
+    findParticipants(input: ParticipantFiltersInput) : FindParticipantsResponse
   }
 `;
 

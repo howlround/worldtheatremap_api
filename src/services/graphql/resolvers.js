@@ -266,6 +266,72 @@ module.exports = function Resolvers() {
 
         return find;
       },
+
+      findParticipants: (root, args, context) => {
+        const query = {};
+
+        // _id: String
+        if (!isNil(args.input._id)) {
+          query._id = args.input._id;
+        }
+
+        // profile: ReferencedEntityInput
+        const profileId = get(args.input, 'profile._id');
+        if (profileId) {
+          query['profile._id'] = profileId;
+        }
+
+        // event: ParticipantEventFiltersInput
+        // _id: String
+        const eventId = get(args.input, 'event._id');
+        if (eventId) {
+          query['event._id'] = eventId;
+        }
+
+        // show: ReferencedEntityInput
+        const eventShowId = get(args.input, 'event.show._id');
+        if (eventShowId) {
+          query['event.show._id'] = eventShowId;
+        }
+
+        // organizations: ReferencedEntityInput
+        const eventOrgId = get(args.input, 'event.organizations._id');
+        if (eventOrgId) {
+          query['event.organizations._id'] = eventOrgId;
+        }
+
+        // role: String
+        if (!isNil(args.input.role)) {
+          query.role = args.input.role;
+        }
+
+        // If this function hasn't generated a valid query return early to prevent all results being returned
+        if (isEmpty(query)) {
+          return {
+            total: 0,
+            participants: null,
+          }
+        }
+
+        // context is neccessary for auth
+        const params = context;
+        // Add query and skip
+        params.query = query;
+        if (!isNil(args.input.skip)) {
+          params.query.$skip = args.input.skip;
+        }
+
+        const find = app.service('participants')
+          .find(params)
+          .then(data => ({
+            total: data.total,
+            participants: data.data,
+            skip: data.skip,
+            limit: data.limit,
+          }));
+
+        return find;
+      },
     },
   };
 }
