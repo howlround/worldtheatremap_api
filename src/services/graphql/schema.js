@@ -88,6 +88,7 @@ const typeDefs = `
 
   # Inputs
   input ProfileFiltersInput {
+    _id: String
     # Searching on the name field is not case sensitive, matches partial words, and uses case folding for diacritics.
     name: String
     selfDefinedRoles: [String]
@@ -102,6 +103,7 @@ const typeDefs = `
   }
 
   input ShowFiltersInput {
+    _id: String
     # Searching on the name field is not case sensitive, matches partial words, and uses case folding for diacritics.
     name: String
     author: ReferencedEntityInput

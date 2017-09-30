@@ -15,6 +15,11 @@ module.exports = function Resolvers() {
       findProfiles: (root, args, context) => {
         const query = {};
 
+        // _id: String
+        if (!isNil(args.input._id)) {
+          query._id = args.input._id;
+        }
+
         if (!isNil(args.input.name)) {
           query.nameSearch = new RegExp(`.*${removeDiacritics(args.input.name).toUpperCase()}.*`);
         }
@@ -97,6 +102,11 @@ module.exports = function Resolvers() {
 
       findShows: (root, args, context) => {
         const query = {};
+
+        // _id: String
+        if (!isNil(args.input._id)) {
+          query._id = args.input._id;
+        }
 
         if (!isNil(args.input.name)) {
           query.nameSearch = new RegExp(`.*${removeDiacritics(args.input.name).toUpperCase()}.*`);
