@@ -189,17 +189,17 @@ module.exports = function Resolvers() {
           }
         }
 
-        // startDate: String
-        if (!isNil(args.input.startDate)) {
+        // endsAfter: String
+        if (!isNil(args.input.endsAfter)) {
           query.endDate = {
-            $gte: moment(args.input.startDate).startOf('day').toDate(),
+            $gte: moment(args.input.endsAfter).startOf('day').toDate(),
           };
         }
 
-        // endDate: String
-        if (!isNil(args.input.endDate)) {
+        // startsBefore: String
+        if (!isNil(args.input.startsBefore)) {
           query.startDate = {
-            $lte: moment(args.input.endDate).endOf('day').toDate(),
+            $lte: moment(args.input.startsBefore).endOf('day').toDate(),
           };
         }
 

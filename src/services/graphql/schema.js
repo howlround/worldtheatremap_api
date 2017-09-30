@@ -123,11 +123,11 @@ const typeDefs = `
     administrativeArea: [String]
     country: [String]
     # - Date fields use javascript Date format
-    # - Passing a date to endDate searches for events that start before the date passed
-    endDate: String
+    # - Passing a date to startsBefore searches for events that start before the date passed
+    startsBefore: String
     # - Date fields use javascript Date format
-    # - Passing a date to startDate searches for events that end after the date passed
-    startDate: String
+    # - Passing a date to endsAfter searches for events that end after the date passed
+    endsAfter: String
   }
 
   # The schema allows the following queries:
