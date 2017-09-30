@@ -86,14 +86,6 @@ module.exports = function Resolvers() {
           };
         }
 
-        // If this function hasn't generated a valid query return early to prevent all results being returned
-        if (isEmpty(query)) {
-          return {
-            total: 0,
-            profiles: null,
-          }
-        }
-
         // context is neccessary for auth
         const params = context;
         // Add query and skip
@@ -146,14 +138,6 @@ module.exports = function Resolvers() {
         if (!isNil(args.input.languages)) {
           query.languages = {
             $in: args.input.languages,
-          }
-        }
-
-        // If this function hasn't generated a valid query return early to prevent all results being returned
-        if (isEmpty(query)) {
-          return {
-            total: 0,
-            shows: null,
           }
         }
 
@@ -239,14 +223,6 @@ module.exports = function Resolvers() {
           };
         }
 
-        // If this function hasn't generated a valid query return early to prevent all results being returned
-        if (isEmpty(query)) {
-          return {
-            total: 0,
-            events: null,
-          }
-        }
-
         // context is neccessary for auth
         const params = context;
         // Add query and skip
@@ -303,14 +279,6 @@ module.exports = function Resolvers() {
         // role: String
         if (!isNil(args.input.role)) {
           query.role = args.input.role;
-        }
-
-        // If this function hasn't generated a valid query return early to prevent all results being returned
-        if (isEmpty(query)) {
-          return {
-            total: 0,
-            participants: null,
-          }
         }
 
         // context is neccessary for auth
