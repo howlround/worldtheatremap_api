@@ -115,6 +115,8 @@ const typeDefs = `
 
   # Inputs
   input ProfileFiltersInput {
+    # How many records to skip to allow for pagination
+    skip: Int
     _id: String
     # Searching on the name field is not case sensitive, matches partial words, and uses case folding for diacritics.
     name: String
@@ -138,6 +140,8 @@ const typeDefs = `
   }
 
   input ShowFiltersInput {
+    # How many records to skip to allow for pagination
+    skip: Int
     _id: String
     # Searching on the name field is not case sensitive, matches partial words, and uses case folding for diacritics.
     name: String
@@ -153,6 +157,8 @@ const typeDefs = `
   }
 
   input EventFiltersInput {
+    # How many records to skip to allow for pagination
+    skip: Int
     _id: String
     show: ReferencedEntityInput
     organizations: ReferencedEntityInput
@@ -169,6 +175,8 @@ const typeDefs = `
   }
 
   input ParticipantFiltersInput {
+    # How many records to skip to allow for pagination
+    skip: Int
     _id: String
     profile: ReferencedEntityInput
     role: String
