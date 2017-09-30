@@ -28,6 +28,7 @@ const typeDefs = `
     administrativeArea: String
     country: String
     postalCode: String
+    i18n: i18n
   }
 
   type Show {
@@ -38,11 +39,7 @@ const typeDefs = `
     interests: [String]
     country: [String]
     languages: [String]
-  }
-
-  type ReferencedEntity {
-    name: String
-    _id: String
+    i18n: i18n
   }
 
   type Event {
@@ -62,6 +59,23 @@ const typeDefs = `
     streetAddress: String
     administrativeArea: String
     postalCode: String
+  }
+
+  # Helpers
+  type ReferencedEntity {
+    name: String
+    _id: String
+  }
+
+  # List of possible languages
+  type i18n {
+    es: i18nFields
+  }
+
+  # There are any fields that are translated
+  type i18nFields {
+    name: String
+    about: String
   }
 
   # Responses
