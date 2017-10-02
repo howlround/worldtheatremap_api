@@ -1,15 +1,4 @@
 const { authenticate } = require('feathers-authentication').hooks;
-const { populate } = require('feathers-hooks-common');
-
-const festivalChildrenSchema = {
-  include: {
-    service: 'festival-organizers',
-    nameAs: 'festivals',
-    parentField: '_id',
-    childField: 'parentId',
-    asArray: true,
-  }
-};
 
 module.exports = {
   before: {
@@ -24,7 +13,7 @@ module.exports = {
 
   after: {
     all: [],
-    find: [ populate({ schema: festivalChildrenSchema }) ],
+    find: [],
     get: [],
     create: [],
     update: [],

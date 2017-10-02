@@ -4,6 +4,7 @@ const profiles = require('./profiles/profiles.service.js');
 const shows = require('./shows/shows.service.js');
 const events = require('./events/events.service.js');
 const participants = require('./participants/participants.service.js');
+const festivalOrganizers = require('./festival-organizers/festival-organizers.service.js');
 module.exports = function () {
   const app = this; // eslint-disable-line no-unused-vars
   app.configure(graphql);
@@ -12,4 +13,5 @@ module.exports = function () {
   app.configure(shows);
   app.configure(events);
   app.configure(participants);
+  app.configure(festivalOrganizers);
 };

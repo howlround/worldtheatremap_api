@@ -29,6 +29,11 @@ const typeDefs = `
     country: String
     postalCode: String
     i18n: i18n
+    festivals: [FestivalProfiles]
+  }
+
+  type FestivalProfiles {
+    profile: ReferencedEntity
   }
 
   type Show {
