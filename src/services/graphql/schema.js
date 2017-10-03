@@ -30,10 +30,15 @@ const typeDefs = `
     postalCode: String
     i18n: i18n
     festivals: [FestivalProfiles]
+    festivalOrganizers: [FestivalOrganizer]
   }
 
   type FestivalProfiles {
     profile: ReferencedEntity
+  }
+
+  type FestivalOrganizer {
+    parentId: String
   }
 
   type Show {

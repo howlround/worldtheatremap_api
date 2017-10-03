@@ -5,6 +5,7 @@ const isEmpty = require('lodash').isEmpty;
 const isNil = require('lodash').isNil;
 const moment = require('moment');
 const removeDiacritics = require('diacritics').remove;
+const graphqlFields = require('graphql-fields');
 
 module.exports = function Resolvers() {
 
@@ -12,7 +13,10 @@ module.exports = function Resolvers() {
 
   return {
     Query: {
-      findProfiles: (root, args, context) => {
+      findProfiles: (root, args, context, info) => {
+        context.graphqlFields = {
+          findProfiles: graphqlFields(info),
+        }
         const query = {};
 
         // _id: String

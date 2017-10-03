@@ -998,6 +998,10 @@ graceful-fs@^4.1.2:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/graceful-readlink/-/graceful-readlink-1.0.1.tgz#4cafad76bc62f02fa039b2f94e9a3dd3a391a725"
 
+graphql-fields@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/graphql-fields/-/graphql-fields-1.0.2.tgz#099ee1d4445b42d0f47e06d622acebb33abc6cce"
+
 graphql-server-express@^1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/graphql-server-express/-/graphql-server-express-1.1.2.tgz#6e8a306a6616ac72c7850efa9fda9cba29836335"

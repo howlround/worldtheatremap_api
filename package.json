@@ -48,6 +48,7 @@
     "feathers-mongodb": "^2.9.0",
     "feathers-rest": "^1.8.0",
     "graphql": "^0.11.3",
+    "graphql-fields": "^1.0.2",
     "graphql-server-express": "^1.1.2",
     "graphql-tools": "^1.2.2",
     "helmet": "^3.8.1",

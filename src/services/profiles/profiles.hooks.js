@@ -1,5 +1,5 @@
 const { authenticate } = require('feathers-authentication').hooks;
-const { populate } = require('feathers-hooks-common');
+const { populate, iff } = require('feathers-hooks-common');
 
 const festivalChildrenSchema = {
   include: {
@@ -7,6 +7,15 @@ const festivalChildrenSchema = {
     nameAs: 'festivals',
     parentField: '_id',
     childField: 'parentId',
+    asArray: true,
+  }
+};
+
+const festivalParentsSchema = {
+  include: {
+    service: 'festival-organizers',
+    nameAs: 'festivalOrganizers',
+    select: (hook, parentItem) => ({ 'profile._id': parentItem._id }),
     asArray: true,
   }
 };
@@ -24,7 +33,10 @@ module.exports = {
 
   after: {
     all: [],
-    find: [ populate({ schema: festivalChildrenSchema }) ],
+    find: [
+      iff(hook => hook.params.graphqlFields.findProfiles.profiles.festivals, populate({ schema: festivalChildrenSchema })),
+      iff(hook => hook.params.graphqlFields.findProfiles.profiles.festivalOrganizers, populate({ schema: festivalParentsSchema })),
+    ],
     get: [],
     create: [],
     update: [],
