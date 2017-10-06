@@ -105,7 +105,7 @@ Our docker-compose.yml file has a settings in the mongo container for volumes. M
 
 ## Relaunching new servers
 
-- Spin up new droplet from most recent snapshot
+- Spin up new droplet from most recent snapshot (at the time of writing we are using the smallest size: 512 MB)
 - ssh in: `ssh -i ~/.ssh/colinsagan_rsa wtm@xx.xx.xx.xx`
 - Update server code: `sudo apt-get update; sudo apt-get upgrade`
 - `cd /var/www/npx_search`
