@@ -470,7 +470,7 @@ debug@2.6.7:
   dependencies:
     ms "2.0.0"
 
-debug@2.6.8, debug@^2.2.0, debug@^2.3.1, debug@^2.3.2:
+debug@2.6.8, debug@^2.2.0, debug@^2.3.1:
   version "2.6.8"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.8.tgz#e731531ca2ede27d188222427da17821d68ff4fc"
   dependencies:
@@ -732,11 +732,11 @@ feathers-authentication-client@^0.3.1:
     feathers-errors "^2.4.0"
     jwt-decode "^2.1.0"
 
-feathers-authentication-hooks@^0.1.4:
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/feathers-authentication-hooks/-/feathers-authentication-hooks-0.1.4.tgz#0e8079efc9add3572531ea352cb5bc46660be368"
+feathers-authentication-hooks@^0.1.5:
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/feathers-authentication-hooks/-/feathers-authentication-hooks-0.1.5.tgz#836e3d086ed5a857a03be767ec715782b06996c7"
   dependencies:
-    debug "^2.3.2"
+    debug "^3.0.0"
     feathers-errors "^2.5.0"
     lodash.get "^4.4.2"
     lodash.isplainobject "^4.0.6"
@@ -818,9 +818,9 @@ feathers-hooks@^2.0.1, feathers-hooks@^2.0.2:
     feathers-commons "^0.8.6"
     uberproto "^1.2.0"
 
-feathers-mongodb@^2.9.0:
-  version "2.9.0"
-  resolved "https://registry.yarnpkg.com/feathers-mongodb/-/feathers-mongodb-2.9.0.tgz#c5672c9f74db97c17792ea0c7bb22c3cfd82ada0"
+feathers-mongodb@^2.9.1:
+  version "2.9.1"
+  resolved "https://registry.yarnpkg.com/feathers-mongodb/-/feathers-mongodb-2.9.1.tgz#99d97b508c2feb7fcd51ccff823b73568d00b364"
   dependencies:
     babel-polyfill "^6.7.4"
     feathers-commons "^0.8.4"
@@ -1500,19 +1500,19 @@ moment@2.x.x, moment@^2.18.1:
   version "2.18.1"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.18.1.tgz#c36193dd3ce1c2eed2adb7c802dbbc77a81b1c0f"
 
-mongodb-core@2.1.15:
-  version "2.1.15"
-  resolved "https://registry.yarnpkg.com/mongodb-core/-/mongodb-core-2.1.15.tgz#841f53b87ffff4c7458189c35c8ae827e1169764"
+mongodb-core@2.1.17:
+  version "2.1.17"
+  resolved "https://registry.yarnpkg.com/mongodb-core/-/mongodb-core-2.1.17.tgz#a418b337a14a14990fb510b923dee6a813173df8"
   dependencies:
     bson "~1.0.4"
     require_optional "~1.0.0"
 
-mongodb@^2.2.31:
-  version "2.2.31"
-  resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-2.2.31.tgz#1940445c661e19217bb3bf8245d9854aaef548db"
+mongodb@^2.2.33:
+  version "2.2.33"
+  resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-2.2.33.tgz#b537c471d34a6651b48f36fdbf29750340e08b50"
   dependencies:
     es6-promise "3.2.1"
-    mongodb-core "2.1.15"
+    mongodb-core "2.1.17"
     readable-stream "2.2.7"
 
 ms@2.0.0, ms@^2.0.0:
