@@ -1,5 +1,6 @@
 const { authenticate } = require('feathers-authentication').hooks;
 const { populate, iff } = require('feathers-hooks-common');
+const get = require('lodash').get;
 
 const festivalChildrenSchema = {
   include: {
@@ -34,8 +35,8 @@ module.exports = {
   after: {
     all: [],
     find: [
-      iff(hook => hook.params.graphqlFields.findProfiles.profiles.festivals, populate({ schema: festivalChildrenSchema })),
-      iff(hook => hook.params.graphqlFields.findProfiles.profiles.festivalOrganizers, populate({ schema: festivalParentsSchema })),
+      iff(hook => get(hook.params, 'graphqlFields.findProfiles.profiles.festivals'), populate({ schema: festivalChildrenSchema })),
+      iff(hook => get(hook.params, 'graphqlFields.findProfiles.profiles.festivalOrganizers'), populate({ schema: festivalParentsSchema })),
     ],
     get: [],
     create: [],
