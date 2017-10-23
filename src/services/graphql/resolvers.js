@@ -90,6 +90,13 @@ module.exports = function Resolvers() {
           };
         }
 
+        // profileType: [String]
+        if (!isNil(args.input.profileType)) {
+          query.profileType = {
+            $in: args.input.profileType,
+          }
+        }
+
         // context is neccessary for auth
         const params = context;
         // Add query and skip

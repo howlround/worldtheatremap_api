@@ -147,6 +147,8 @@ const typeDefs = `
     # - Date fields use javascript Date format
     # - Passing a date to endsAfter searches for events that end after the date passed
     endsAfter: String
+    # - profileType options: Individual, Organization, Festival
+    profileType: [String]
   }
 
   input ShowFiltersInput {
