@@ -116,6 +116,10 @@ const typeDefs = `
     limit: Int
   }
 
+  type CountEventsResponse {
+    total: Int
+  }
+
   type FindParticipantsResponse {
     participants: [Participant]
     total: Int
@@ -186,6 +190,35 @@ const typeDefs = `
     endsAfter: String
   }
 
+  input CountEventsFiltersInput {
+    # show: ReferencedEntityInput
+    # organizations: ReferencedEntityInput
+    # Event type
+    eventType: [String]
+    # Event location
+    locality: [String]
+    # Event location
+    administrativeArea: [String]
+    # Queries the country field on events
+    eventsCountry: [String]
+    # - Date fields use javascript Date format
+    # - Passing a date to startsBefore searches for events that start before the date passed
+    startsBefore: String
+    # - Date fields use javascript Date format
+    # - Passing a date to endsAfter searches for events that end after the date passed
+    endsAfter: String
+    # Show name
+    name: String
+    # Show author
+    # author: ReferencedEntityInput
+    # Show interests
+    interests: [String]
+    # Show country
+    country: [String]
+    # Show languages
+    languages: [String]
+  }
+
   input ParticipantFiltersInput {
     # How many records to skip to allow for pagination
     skip: Int
@@ -206,6 +239,7 @@ const typeDefs = `
     findProfiles(input: ProfileFiltersInput) : FindProfilesResponse
     findShows(input: ShowFiltersInput) : FindShowsResponse
     findEvents(input: EventFiltersInput) : FindEventsResponse
+    countEvents(input: CountEventsFiltersInput) : CountEventsResponse
     findParticipants(input: ParticipantFiltersInput) : FindParticipantsResponse
   }
 `;

@@ -1,8 +1,12 @@
 // src/services/graphql/resolvers.js
-const each = require('lodash').each;
-const get = require('lodash').get;
-const isEmpty = require('lodash').isEmpty;
-const isNil = require('lodash').isNil;
+const {
+  each,
+  get,
+  isEmpty,
+  isNil,
+  map,
+  clone,
+} = require('lodash');
 const moment = require('moment');
 const removeDiacritics = require('diacritics').remove;
 const graphqlFields = require('graphql-fields');
@@ -252,6 +256,159 @@ module.exports = function Resolvers() {
           }));
 
         return find;
+      },
+
+      countEvents: (root, args, context) => {
+        const eventQuery = {};
+        const showQuery = {};
+
+        // Show Filters
+        // _id: String
+        if (!isNil(args.input._id)) {
+          showQuery._id = args.input._id;
+        }
+
+        // name: String
+        if (!isNil(args.input.name)) {
+          showQuery.nameSearch = new RegExp(`.*${removeDiacritics(args.input.name).toUpperCase()}.*`);
+        }
+
+        // Not using author in search right now
+        // author: ReferencedEntityInput
+        // const authorId = get(args.input, 'author._id');
+        // if (authorId) {
+        //   showQuery['author._id'] = authorId;
+        // }
+
+        // country: [String]
+        if (!isNil(args.input.country)) {
+          showQuery.country = {
+            $in: args.input.country,
+          }
+        }
+
+        // interests: [String]
+        if (!isNil(args.input.interests)) {
+          showQuery.interests = {
+            $in: args.input.interests,
+          }
+        }
+
+        // languages: [String]
+        if (!isNil(args.input.languages)) {
+          showQuery.languages = {
+            $in: args.input.languages,
+          }
+        }
+
+        // Events filters
+        // Not using show or organizations reference right now
+        // // show: ReferencedEntityInput
+        // const showId = get(args.input, 'show._id');
+        // if (showId) {
+        //   eventQuery['show._id'] = showId;
+        // }
+
+        // // organizations: ReferencedEntityInput
+        // const organizationsId = get(args.input, 'organizations._id');
+        // if (organizationsId) {
+        //   eventQuery['organizations._id'] = organizationsId;
+        // }
+
+        // eventType: [String]
+        if (!isNil(args.input.eventType)) {
+          eventQuery.eventType = {
+            $in: args.input.eventType,
+          }
+        }
+
+        // locality: [String]
+        if (!isNil(args.input.locality)) {
+          eventQuery.locality = {
+            $in: args.input.locality,
+          }
+        }
+
+        // administrativeArea: [String]
+        if (!isNil(args.input.administrativeArea)) {
+          eventQuery.administrativeArea = {
+            $in: args.input.administrativeArea,
+          }
+        }
+
+        // eventsCountry: [String]
+        if (!isNil(args.input.eventsCountry)) {
+          eventQuery.country = {
+            $in: args.input.eventsCountry,
+          }
+        }
+
+        // startsBefore: String
+        if (!isNil(args.input.startsBefore)) {
+          eventQuery.startDate = {
+            $lte: moment(args.input.startsBefore).endOf('day').toDate(),
+          };
+        }
+
+        // endsAfter: String
+        if (!isNil(args.input.endsAfter)) {
+          eventQuery.endDate = {
+            $gte: moment(args.input.endsAfter).startOf('day').toDate(),
+          };
+        }
+
+        // If there are show filters, get the show ids using the show filters
+        // add those ids to a query including the events filters
+        // count the events
+        if (!isEmpty(showQuery)) {
+          // context is neccessary for auth
+          const showParams = clone(context);
+          // Add query and skip
+          showParams.query = showQuery;
+          showParams.query.$select = ['_id'];
+
+          const findShows = app.service('shows')
+            .find(showParams)
+            .then(data => {
+              const showIds = map(data.data, '_id');
+              eventQuery['show._id'] = {
+                $in: showIds,
+              }
+
+              // context is neccessary for auth
+              const eventParams = clone(context);
+              // Add query and skip
+              eventParams.query = eventQuery;
+              // Only count the events
+              eventParams.query.$limit = 0;
+
+              const find = app.service('events')
+                .find(eventParams)
+                .then(data => ({
+                  total: data.total,
+                }));
+
+              return find;
+            });
+
+          return findShows;
+        } else if (!isEmpty(eventQuery)) {
+          // If there are only event filters, do a count of events that match that query
+          // context is neccessary for auth
+          const eventParams = context;
+          // Add query and skip
+          eventParams.query = eventQuery;
+          // Only count the events
+          eventParams.query.$limit = 0;
+
+          const find = app.service('events')
+            .find(eventParams)
+            .then(data => ({
+              total: data.total,
+            }));
+
+          return find;
+        }
       },
 
       findParticipants: (root, args, context) => {
