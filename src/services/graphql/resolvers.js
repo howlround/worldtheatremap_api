@@ -18,11 +18,10 @@ module.exports = function Resolvers() {
   return {
     Query: {
       findProfiles: (root, args, context, info) => {
-        context.graphqlFields = {
-          findProfiles: graphqlFields(info),
-        }
-        const query = {};
+        context.graphqlFields = context.graphqlFields || {};
+        context.graphqlFields.findProfiles = graphqlFields(info);
 
+        const query = {};
         // _id: String
         if (!isNil(args.input._id)) {
           query._id = args.input._id;
@@ -121,7 +120,10 @@ module.exports = function Resolvers() {
         return find;
       },
 
-      findShows: (root, args, context) => {
+      findShows: (root, args, context, info) => {
+        context.graphqlFields = context.graphqlFields || {};
+        context.graphqlFields.findShows = graphqlFields(info);
+
         const query = {};
 
         // _id: String
