@@ -1,7 +1,6 @@
 // Initializes the `events` service on path `/events`
 const createService = require('feathers-mongodb');
 const hooks = require('./events.hooks');
-const filters = require('./events.filters');
 
 module.exports = function () {
   const app = this;
@@ -20,8 +19,4 @@ module.exports = function () {
   });
 
   service.hooks(hooks);
-
-  if (service.filter) {
-    service.filter(filters);
-  }
 };

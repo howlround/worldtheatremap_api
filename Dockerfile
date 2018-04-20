@@ -18,7 +18,7 @@ RUN set -ex \
   done
 
 ENV NPM_CONFIG_LOGLEVEL info
-ENV NODE_VERSION 8.6.0
+ENV NODE_VERSION 8.11.1
 ENV NODE_ENV dev
 
 RUN buildDeps='xz-utils curl ca-certificates' \
@@ -34,7 +34,7 @@ RUN buildDeps='xz-utils curl ca-certificates' \
     && apt-get purge -y --auto-remove $buildDeps
 
 # Install yarn and feathers-cli
-RUN npm install -g yarn feathers-cli
+RUN npm install -g yarn @feathersjs/cli pm2@latest
 
 # Install Git
 RUN add-apt-repository -y ppa:git-core/ppa;\

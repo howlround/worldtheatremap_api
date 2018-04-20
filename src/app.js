@@ -5,13 +5,13 @@ const cors = require('cors');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
 
-const feathers = require('feathers');
-const configuration = require('feathers-configuration');
-const hooks = require('feathers-hooks');
-const rest = require('feathers-rest');
+const feathers = require('@feathersjs/feathers');
+const express = require('@feathersjs/express');
+const configuration = require('@feathersjs/configuration');
+const rest = require('@feathersjs/express/rest');
 
 
-const handler = require('feathers-errors/handler');
+const handler = require('@feathersjs/express/errors');
 const notFound = require('feathers-errors/not-found');
 
 const middleware = require('./middleware');
@@ -22,7 +22,7 @@ const authentication = require('./authentication');
 
 const mongodb = require('./mongodb');
 
-const app = feathers();
+const app = express(feathers());
 
 // Load app configuration
 app.configure(configuration());
@@ -39,8 +39,6 @@ app.get('/', (req, res) => {
   res.redirect(303, '/graphiql');
 });
 
-// Set up Plugins and providers
-app.configure(hooks());
 app.configure(mongodb);
 app.configure(rest());
 

@@ -1,7 +1,6 @@
 // Initializes the `ApiKeys` service on path `/api-keys`
 const createService = require('feathers-mongodb');
 const hooks = require('./api-keys.hooks');
-const filters = require('./api-keys.filters');
 
 module.exports = function () {
   const app = this;
@@ -20,8 +19,4 @@ module.exports = function () {
   });
 
   service.hooks(hooks);
-
-  if (service.filter) {
-    service.filter(filters);
-  }
 };
