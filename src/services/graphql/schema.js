@@ -28,6 +28,8 @@ const typeDefs = `
     administrativeArea: String
     country: String
     postalCode: String
+    image: String
+    imageWide: String
     i18n: i18n
     festivals: [FestivalProfiles]
     festivalOrganizers: [FestivalOrganizer]
