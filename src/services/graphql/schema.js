@@ -54,9 +54,10 @@ const typeDefs = `
 
   type Event {
     _id: String
-    show: ReferencedEntity
+    show: ReferencedShow
     organizations: ReferencedEntity
     eventType: String
+    # - Interests come from the related Show
     about: String
     # - Date fields use javascript Date format
     startDate: String
@@ -81,6 +82,12 @@ const typeDefs = `
   type ReferencedEntity {
     name: String
     _id: String
+  }
+
+  type ReferencedShow {
+    name: String
+    _id: String
+    interests: [String]
   }
 
   # List of possible languages
@@ -172,13 +179,21 @@ const typeDefs = `
     _id: String
   }
 
+  input ReferencedShowInput {
+    # For filtering referenced entities only the _id is accepted
+    _id: String
+    interests: [String]
+  }
+
   input EventFiltersInput {
     # How many records to skip to allow for pagination
     skip: Int
     _id: String
-    show: ReferencedEntityInput
+    show: ReferencedShowInput
     organizations: ReferencedEntityInput
     eventType: [String]
+    # - Interests come from the related Show
+    interests: [String]
     locality: [String]
     administrativeArea: [String]
     country: [String]

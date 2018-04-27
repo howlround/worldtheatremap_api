@@ -178,7 +178,10 @@ module.exports = function Resolvers() {
         return find;
       },
 
-      findEvents: (root, args, context) => {
+      findEvents: (root, args, context, info) => {
+        context.graphqlFields = context.graphqlFields || {};
+        // context.graphqlFields.findEvents = graphqlFields(info);
+
         const query = {};
 
         // _id: String
@@ -186,10 +189,17 @@ module.exports = function Resolvers() {
           query._id = args.input._id;
         }
 
-        // show: ReferencedEntityInput
+        // show: ReferencedShowInput
         const showId = get(args.input, 'show._id');
         if (showId) {
           query['show._id'] = showId;
+        }
+
+        const showInterests = get(args.input, 'show.interests');
+        if (showInterests) {
+          query['show.interests'] = {
+            $in: showInterests,
+          }
         }
 
         // organizations: ReferencedEntityInput
