@@ -250,6 +250,10 @@ module.exports = function Resolvers() {
           };
         }
 
+        query.$sort = {
+          'startDate': -1,
+        }
+
         // context is neccessary for auth
         const params = context;
         // Add query and skip
