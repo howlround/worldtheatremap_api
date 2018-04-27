@@ -195,7 +195,7 @@ module.exports = function Resolvers() {
           query['show._id'] = showId;
         }
 
-        const showInterests = get(args.input, 'show.interests');
+        const showInterests = get(args.input, 'interests');
         if (showInterests) {
           query['show.interests'] = {
             $in: showInterests,
