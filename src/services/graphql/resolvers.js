@@ -28,7 +28,7 @@ module.exports = function Resolvers() {
         }
 
         if (!isNil(args.input.name)) {
-          query.nameSearch = new RegExp(`.*${removeDiacritics(args.input.name).toUpperCase()}.*`);
+          query.nameSearch = new RegExp(`.*${removeDiacritics(args.input.name).toUpperCase().replace(/[^0-9A-Z]/g, '')}.*`);
         }
 
         if (!isNil(args.input.country)) {
