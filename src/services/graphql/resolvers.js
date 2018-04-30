@@ -62,11 +62,15 @@ module.exports = function Resolvers() {
         }
 
         if (!isNil(args.input.locality)) {
-          query.locality = args.input.locality;
+          query.locality = {
+            $in: args.input.locality,
+          }
         }
 
         if (!isNil(args.input.administrativeArea)) {
-          query.administrativeArea = args.input.administrativeArea;
+          query.administrativeArea = {
+            $in: args.input.administrativeArea,
+          };
         }
 
         if (!isNil(args.input.postalCode)) {
