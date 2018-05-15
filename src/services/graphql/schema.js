@@ -162,6 +162,13 @@ const typeDefs = `
     endsAfter: String
     # - profileType options: Individual, Organization, Festival
     profileType: [String]
+    sort: SortInput
+  }
+
+  input SortInput {
+    # Default sort is the `name` field. The only currently supported additional option is `startDate` for festivals
+    field: String
+    order: String
   }
 
   input ShowFiltersInput {

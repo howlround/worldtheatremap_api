@@ -104,6 +104,35 @@ module.exports = function Resolvers() {
           }
         }
 
+        // Default sort
+        query.$sort = {
+          'name': 1,
+        }
+        // sort: SortInput
+        if (!isNil(args.input.sort)) {
+          if (!isNil(args.input.sort.field)) {
+            var sortOrder = -1;
+            if (!isNil(args.input.sort.order) && args.input.sort.order === 'DESC') {
+              sortOrder = 1;
+            }
+            switch (args.input.sort.field) {
+              case 'startDate':
+                // @TODO: Make sure this goes above name in $sort
+                query.$sort.push({ 'startDate': sortOrder });
+                break;
+              default:
+                // Since we check the existance of .sort above,
+                // default means someone requested something we don't support.
+                // @TODO: Probably should be handled on the schema, but if not find a
+                // way to throw an error here
+                break;
+            }
+          }
+          query.profileType = {
+            $in: args.input.profileType,
+          }
+        }
+
         // context is neccessary for auth
         const params = context;
         // Add query and skip
