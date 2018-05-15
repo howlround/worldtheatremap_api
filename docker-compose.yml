@@ -27,9 +27,11 @@ services:
     image: mongo
     volumes:
       - ./protected_db/howlround-mongodb:/data/db
+    command:
+      - --storageEngine=mmapv1
     # ports:
     #   - "27017:27017"
-  graphiql:
-    image: vitalcode/auth-graphiql
-    ports:
-      - "3003:3000"
+  # graphiql:
+  #   image: vitalcode/auth-graphiql
+  #   ports:
+  #     - "3003:3000"

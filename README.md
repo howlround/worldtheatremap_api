@@ -32,7 +32,8 @@ This project uses [Feathers](http://feathersjs.com).
 
 - `docker start -i wtmapi_api_1`
 - Then use `docker exec -it wtmapi_api_1 zsh` to ssh in
-- Restarting feathers: `
+- Starting feathers `pm2 start ecosystem.json --env production`
+- Restarting feathers: `pm2 restart wtm_api`
 
 ### Using a database in development
 

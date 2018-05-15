@@ -166,7 +166,7 @@ const typeDefs = `
   }
 
   input SortInput {
-    # Default sort is the `name` field. The only currently supported additional option is `startDate` for festivals
+    # Default sort is the name field. The only currently supported additional option is startDate for festivals
     field: String
     order: String
   }
