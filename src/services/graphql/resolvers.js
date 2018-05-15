@@ -159,7 +159,7 @@ module.exports = function Resolvers() {
         }
 
         if (!isNil(args.input.name)) {
-          query.nameSearch = new RegExp(`.*${removeDiacritics(args.input.name).toUpperCase()}.*`);
+          query.nameSearch = new RegExp(`.*${removeDiacritics(args.input.name).toUpperCase().replace(/[^0-9A-Z]/g, '')}.*`);
         }
 
         const authorId = get(args.input, 'author._id');
@@ -313,7 +313,7 @@ module.exports = function Resolvers() {
 
         // name: String
         if (!isNil(args.input.name)) {
-          showQuery.nameSearch = new RegExp(`.*${removeDiacritics(args.input.name).toUpperCase()}.*`);
+          showQuery.nameSearch = new RegExp(`.*${removeDiacritics(args.input.name).toUpperCase().replace(/[^0-9A-Z]/g, '')}.*`);
         }
 
         // Not using author in search right now
