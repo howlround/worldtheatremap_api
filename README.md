@@ -114,7 +114,8 @@ Our docker-compose.yml file has a settings in the mongo container for volumes. M
 ## Relaunching new servers
 
 - Spin up new droplet from most recent snapshot (at the time of writing we are using the smallest size: 512 MB)
-- ssh in: `ssh -i ~/.ssh/colinsagan_rsa wtm@xx.xx.xx.xx`
+- cat ~/.ssh/id_rsa.pub | ssh root@xx.xx.xx.xx "cat >> /home/wtm/.ssh/authorized_keys"
+- ssh in: `ssh wtm@xx.xx.xx.xx`
 - Update server code: `sudo apt-get update; sudo apt-get upgrade`
 - `cd /var/www/wtm_api`
 - Pull new code (or branch)
@@ -123,6 +124,9 @@ Our docker-compose.yml file has a settings in the mongo container for volumes. M
 - `pm2 start ecosystem.json --env production`
 - Update DNS to point to new droplet for given url: https://gaiahost.coop/myaccount/dns/zone/show/1609#A
 - Confirm site is pointing at correct droplet
+- Update ssl settings:
+  - `sudo vim /etc/nginx/sites-available/default` and update server name and remove any certbot lines pointing at certs you don't want
+  - `sudo certbot --nginx -d data.worldtheatremap.org` or `sudo certbot --nginx -d data-staging.worldtheatremap.org`
 - Delete old droplet
 
 ## License
