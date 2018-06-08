@@ -8,30 +8,9 @@ services:
       - "3030:3030"
     stdin_open: true
     tty: true
-  # meteor:
-  #   build:
-  #     context: ../wtm
-  #     dockerfile: dev-meteor-dockerfile
-  #   volumes:
-  #     - ../wtm:/app
-  #   ports:
-  #     - "3000:3000"
-  #   # environment:
-  #     # - APP_ROOT=.
-  #     # - ROOT_URL=http://example.com
-  #     # - MONGO_URL=mongodb://mongo:27017/meteor
-  #     # - METEOR_SETTINGS
-  #   stdin_open: true
-  #   tty: true
   mongo:
     image: mongo
     volumes:
       - ./protected_db/howlround-mongodb:/data/db
     command:
       - --storageEngine=mmapv1
-    # ports:
-    #   - "27017:27017"
-  # graphiql:
-  #   image: vitalcode/auth-graphiql
-  #   ports:
-  #     - "3003:3000"
