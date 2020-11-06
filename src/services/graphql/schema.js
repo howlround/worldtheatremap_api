@@ -95,6 +95,7 @@ const typeDefs = `
   # List of possible languages
   type i18n {
     es: i18nFields
+    fr: i18nFields
   }
 
   # There are any fields that are translated

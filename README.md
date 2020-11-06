@@ -114,7 +114,7 @@ Our docker-compose.yml file has a settings in the mongo container for volumes. M
 ## Relaunching new servers
 
 - Spin up new droplet from most recent snapshot (at the time of writing we are using the smallest size: 512 MB)
-- cat ~/.ssh/id_rsa.pub | ssh root@xx.xx.xx.xx "cat >> /home/wtm/.ssh/authorized_keys"
+- `cat ~/.ssh/id_rsa.pub | ssh root@xx.xx.xx.xx "cat >> /home/wtm/.ssh/authorized_keys"`
 - ssh in: `ssh wtm@xx.xx.xx.xx`
 - Update server code: `sudo apt-get update; sudo apt-get upgrade`
 - `cd /var/www/wtm_api`
