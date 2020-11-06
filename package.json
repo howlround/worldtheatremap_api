@@ -51,7 +51,7 @@
     "graphql-server-express": "^1.1.2",
     "graphql-tools": "^1.2.2",
     "helmet": "^3.8.1",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.19",
     "moment": "^2.18.1",
     "mongodb": "^2.2.33",
     "serve-favicon": "^2.4.4",
